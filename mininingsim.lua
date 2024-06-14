@@ -54,7 +54,7 @@ local function GetPlatform()
 end
 
 local function GetCurrentDepth()
-	local DepthString = string.match(Depth.Text)
+	local DepthString = string.match(Depth.Text, "%d+")
 	local DepthNumber = tonumber(DepthString)
 	
 	return DepthNumber
