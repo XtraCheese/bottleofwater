@@ -95,7 +95,7 @@ for _, Connection in pairs(getconnections(LowQuality.MouseButton1Down)) do
 	Connection:Fire()
 end
 
-while table.find({Coins.Text, Inventory.Text, Tokens.Text}, "Loading...") do
+while table.find({Coins.Amount.Text, Inventory.Amount.Text, Tokens.Amount.Text}, "Loading...") do
 	RunService.RenderStepped:Wait()
 end
 
