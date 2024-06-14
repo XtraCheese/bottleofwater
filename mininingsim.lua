@@ -69,8 +69,6 @@ end
 local function IsAtLavaSpawn(HumanoidRootPart: BasePart)
 	local HRPPos = HumanoidRootPart.Position
 	
-	21.350021362304688, 22.326696395874023, 26322.6484375
-	
 	return 
 		(HRPPos.X >= 0 and HRPPos.X <= 50) and
 		(HRPPos.Z >= 26000 and HRPPos.Z <= 26500)
