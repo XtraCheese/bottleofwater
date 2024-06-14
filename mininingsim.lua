@@ -62,7 +62,7 @@ end
 
 local function TpPlatform(HumanoidRootPart: BasePart)
 	if Platform ~= nil then
-		Platform.Position = HumanoidRootPart.Position - Vector3.new(0, 3, 0)
+		Platform.Position = HumanoidRootPart.Position - Vector3.new(0, 4, 0)
 	end
 end
 
