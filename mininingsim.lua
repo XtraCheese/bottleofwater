@@ -37,7 +37,7 @@ local Humanoid = Character:WaitForChild("Humanoid")
 _G.Autofarm = false
 
 
-local DepthThreshold = 100
+local DepthThreshold = 1
 local CapacityThreshold = 500
 
 
@@ -169,6 +169,7 @@ MiningLoop()
 
 Humanoid:GetPropertyChangedSignal("Health"):Connect(function()
 	if Humanoid.Health <= 0 then
+		if Character then LocalPlayer.CharacterRemoving:Wait() end
 		Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
 		Humanoid = Character:WaitForChild("Humanoid")
 		
