@@ -114,6 +114,10 @@ local SavedPosition = Vector3.new()
 local Remote = GetRemote()
 local SellPad = workspace.Activation:GetChildren()[62]
 
+function CheckRebirth()
+	if GetCoins() >= (Rebirths.Value + 1) * 10000000 thenR emote:FireServer("Rebirth", {{}}) end
+end
+
 function SellBlocks(HumanoidRootPart: BasePart)
 	print("Function to sell blocks has been called")
 	Platform.CanCollide = true
@@ -129,11 +133,6 @@ function SellBlocks(HumanoidRootPart: BasePart)
 	while GetCurrentCapacity() >= CapacityThreshold and RunService.RenderStepped:Wait() do
 		HumanoidRootPart.CFrame = SellPad.CFrame
 		Remote:FireServer("SellItems", {{}})
-		task.wait(0.05)
-	end
-	
-	if GetCoins() >= (Rebirths.Value + 1) * 10000000 then
-		Remote:FireServer("Rebirth", {{}})
 		task.wait(0.05)
 	end
 	
@@ -194,6 +193,7 @@ function MiningLoop()
 end
 
 MiningLoop(); LocalPlayer.CharacterAdded:Connect(MiningLoop)
+RunService:BindToRenderStep("RebirthCheck", 101, CheckRebirth)
 
 --[[
 4.9974188804626465, 12.383817672729492, 26232.9296875 - left bottom
