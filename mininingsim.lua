@@ -155,7 +155,7 @@ function MiningLoop()
 
 	Platform.CanCollide = false
 
-	while GetCurrentDepth() < DepthThreshold and HumanoidRootPart and RunService.RenderStepped:Wait() do
+	while HumanoidRootPart and RunService.RenderStepped:Wait() do
 		local min = HumanoidRootPart.Position + Vector3.new(-1,-10,-1)
 		local max = HumanoidRootPart.Position + Vector3.new(1,0,1)
 		local region = Region3.new(min, max)
@@ -166,22 +166,13 @@ function MiningLoop()
 			RunService.RenderStepped:Wait()
 		end
 
-		if GetCurrentCapacity() > CapacityThreshold then SellBlocks(HumanoidRootPart) end
+		if GetCurrentCapacity() > CapacityThreshold and GetCurrentDepth() > DepthThreshold then
+			SellBlocks(HumanoidRootPart)
+		end
 	end
 end
 
-MiningLoop()
-
-Humanoid:GetPropertyChangedSignal("Health"):Connect(function()
-	if Humanoid.Health <= 0 then
-		if Character then LocalPlayer.CharacterRemoving:Wait() end
-		Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
-		Humanoid = Character:WaitForChild("Humanoid")
-		
-		MiningLoop()
-	end
-end)
-
+MiningLoop(); LocalPlayer.CharacterAdded:Connect(MiningLoop)
 
 --[[
 4.9974188804626465, 12.383817672729492, 26232.9296875 - left bottom
