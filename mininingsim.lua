@@ -113,13 +113,7 @@ function SellBlocks(HumanoidRootPart: BasePart)
 		SavedPosition = HRPPos
 	end
 	
-	while (
-		(HumanoidRootPart.Position.Z >= 26360 and HumanoidRootPart.Position.Z <= 26370) and
-			(HumanoidRootPart.Position.X >= 52 and HumanoidRootPart.Position.X <= 62)
-		) == false 
-	do
-		HumanoidRootPart.CFrame = SellPad.CFrame
-	end
+	for count = 1, 10, 1 do HumanoidRootPart.CFrame = SellPad.CFrame end
 	
 	Remote:FireServer("SellItems", {{}})
 	
