@@ -128,6 +128,8 @@ function SellBlocks(HumanoidRootPart: BasePart)
 		Remote:FireServer("SellItems", {{}})
 	end
 	
+	print("GetCoins():", GetCoins(), "Rebirths.Value:", Rebirths.Value)
+	
 	if GetCoins() >= (Rebirths.Value + 1) * 10000000 then
 		Remote:FireServer("Rebirth", {{}})
 	end
