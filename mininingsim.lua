@@ -16,11 +16,14 @@ local Quality = LoadingFrame:WaitForChild("Quality")
 local LowQuality = Quality:WaitForChild("LowQuality")
 
 local StatsFrame = MainGui:WaitForChild("StatsFrame")
-local Coins = StatsFrame:WaitForChild("Coins")
+local CoinsStats = StatsFrame:WaitForChild("Coins")
 local Inventory = StatsFrame:WaitForChild("Inventory")
 local Tokens = StatsFrame:WaitForChild("Tokens")
 
-local Rebirths = LocalPlayer:WaitForChild("leaderstats"):WaitForChild("Rebirths")
+local leaderstats = LocalPlayer:WaitForChild("leaderstats")
+
+local Rebirths = leaderstats:WaitForChild("Rebirths")
+local Coins = leaderstats:WaitForChild("Coins")
 
 local TopInfoFrame = MainGui:WaitForChild("TopInfoFrame")
 local Depth = TopInfoFrame:WaitForChild("Depth")
@@ -77,7 +80,7 @@ function GetCurrentCapacity()
 end
 
 function GetCoins()
-	local CoinsString = string.gsub(Coins.Amount.Text, ",", "")
+	local CoinsString = string.gsub(Coins.Value, ",", "")
 	local CoinsNumber = tonumber(CoinsString)
 
 	return CoinsNumber
@@ -126,6 +129,7 @@ function SellBlocks(HumanoidRootPart: BasePart)
 	while GetCurrentCapacity() >= CapacityThreshold and RunService.RenderStepped:Wait() do
 		HumanoidRootPart.CFrame = SellPad.CFrame
 		Remote:FireServer("SellItems", {{}})
+		task.wait(0.05)
 	end
 	
 	if GetCoins() >= (Rebirths.Value + 1) * 10000000 then
