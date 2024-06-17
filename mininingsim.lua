@@ -115,7 +115,7 @@ local Remote = GetRemote()
 local SellPad = workspace.Activation:GetChildren()[62]
 
 function CheckRebirth()
-	if GetCoins() >= (Rebirths.Value + 1) * 10000000 thenR emote:FireServer("Rebirth", {{}}) end
+	if GetCoins() >= (Rebirths.Value + 1) * 10000000 then Remote:FireServer("Rebirth", {{}}) end
 end
 
 function SellBlocks(HumanoidRootPart: BasePart)
