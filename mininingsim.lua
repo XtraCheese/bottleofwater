@@ -62,7 +62,8 @@ function GetPlatform()
 end
 
 function GetCurrentDepth()
-	local DepthNumber = tonumber(Depth.Text)
+	local DepthString = string.match(Depth.Text, "%d+")
+	local DepthNumber = tonumber(DepthString)
 	
 	return DepthNumber
 end
@@ -119,7 +120,7 @@ function SellBlocks(HumanoidRootPart: BasePart)
 	if 
 		(HRPPos.Z >= 26178 and HRPPos.Z <= 26232) and 
 		(HRPPos.X >= 5 and HRPPos.X <= 61) then
-		SavedPosition = HRPPos
+		SavedPosition = Vector3.new(29.979537963867188, HRPPos.Y, 26207.3203125)
 	end
 	
 	while GetCurrentCapacity() >= CapacityThreshold and RunService.RenderStepped:Wait() do
