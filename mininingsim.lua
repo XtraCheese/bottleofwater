@@ -20,6 +20,8 @@ local Coins = StatsFrame:WaitForChild("Coins")
 local Inventory = StatsFrame:WaitForChild("Inventory")
 local Tokens = StatsFrame:WaitForChild("Tokens")
 
+local Rebirths = LocalPlayer:WaitForChild("leaderstats"):WaitForChild("Rebirths")
+
 local TopInfoFrame = MainGui:WaitForChild("TopInfoFrame")
 local Depth = TopInfoFrame:WaitForChild("Depth")
 
@@ -38,7 +40,7 @@ _G.Autofarm = false
 
 
 local DepthThreshold = 100
-local CapacityThreshold = 10000
+local CapacityThreshold = 50000
 
 
 function GetRemote()
@@ -60,7 +62,7 @@ function GetPlatform()
 end
 
 function GetCurrentDepth()
-	local DepthString = string.match(Depth.Text, "%d+")
+	local DepthString = string.gsub(Depth.Text, ",", "")
 	local DepthNumber = tonumber(DepthString)
 	
 	return DepthNumber
@@ -72,6 +74,13 @@ function GetCurrentCapacity()
 	local BlocksInBagNumber = tonumber(BlocksInBag)
 	
 	return BlocksInBagNumber
+end
+
+function GetCoins()
+	local CoinsString = string.gsub(Coins.Text, ",", "")
+	local CoinsNumber = tonumber(CoinsString)
+
+	return CoinsNumber
 end
 
 function TpPlatform(HumanoidRootPart: BasePart)
@@ -117,6 +126,10 @@ function SellBlocks(HumanoidRootPart: BasePart)
 	while GetCurrentCapacity() >= CapacityThreshold and RunService.RenderStepped:Wait() do
 		HumanoidRootPart.CFrame = SellPad.CFrame
 		Remote:FireServer("SellItems", {{}})
+	end
+	
+	if GetCoins() >= (Rebirths.Value + 1) * 10000000 then
+		Remote:FireServer("Rebirth", {{}})
 	end
 	
 	Platform.CanCollide = false
