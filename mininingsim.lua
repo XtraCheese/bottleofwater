@@ -104,6 +104,7 @@ local SellPad = workspace.Activation:GetChildren()[62]
 
 function SellBlocks(HumanoidRootPart: BasePart)
 	print("Function to sell blocks has been called")
+	Platform.CanCollide = true
 	
 	local HRPPos = HumanoidRootPart.Position
 	
@@ -117,6 +118,8 @@ function SellBlocks(HumanoidRootPart: BasePart)
 		HumanoidRootPart.CFrame = SellPad.CFrame
 		Remote:FireServer("SellItems", {{}})
 	end
+	
+	Platform.CanCollide = false
 	
 	HumanoidRootPart.CFrame = CFrame.new(SavedPosition)
 end
