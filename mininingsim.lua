@@ -37,7 +37,7 @@ local Humanoid = Character:WaitForChild("Humanoid")
 _G.Autofarm = false
 
 
-local DepthThreshold = 1
+local DepthThreshold = 100
 local CapacityThreshold = 500
 
 
@@ -69,8 +69,9 @@ end
 function GetCurrentCapacity()
 	local WithoutCommas = string.gsub(Inventory.Amount.Text, ",", "")
 	local BlocksInBag = string.match(WithoutCommas, "%d+")
+	local BlocksInBagNumber = tonumber(BlocksInBag)
 	
-	return BlocksInBag
+	return BlocksInBagNumber
 end
 
 function TpPlatform(HumanoidRootPart: BasePart)
