@@ -38,7 +38,7 @@ _G.Autofarm = false
 
 
 local DepthThreshold = 100
-local CapacityThreshold = 500
+local CapacityThreshold = 10000
 
 
 function GetRemote()
@@ -110,9 +110,9 @@ function SellBlocks(HumanoidRootPart: BasePart)
 		SavedPosition = HRPPos
 	end
 	
-	while 
-		(HumanoidRootPart.Position.Z >= 26360 and HumanoidRootPart.Position.Z <= 26370) and 
-		(HumanoidRootPart.Position.X >= 52 and HumanoidRootPart.Position.X <= 62) do
+	while not
+		((HumanoidRootPart.Position.Z >= 26360 and HumanoidRootPart.Position.Z <= 26370) and 
+		(HumanoidRootPart.Position.X >= 52 and HumanoidRootPart.Position.X <= 62)) do
 		HumanoidRootPart.CFrame = CFrame.new(Vector3.new(57.55067443847656, 14.810218811035156, 26365.021484375))
 	end
 	
