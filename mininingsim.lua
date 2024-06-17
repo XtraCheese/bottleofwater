@@ -37,7 +37,7 @@ local Humanoid = Character:WaitForChild("Humanoid")
 _G.Autofarm = false
 
 
-local DepthThreshold = 1
+local DepthThreshold = 100
 local CapacityThreshold = 500
 
 
