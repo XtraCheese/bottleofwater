@@ -40,8 +40,6 @@ _G.Autofarm = false
 local DepthThreshold = 1
 local CapacityThreshold = 500
 
-local Remote = GetRemote()
-
 
 function GetRemote()
 	local Data = getsenv(MainGui.ClientScript).displayCurrent
@@ -100,6 +98,7 @@ function MoveToMine(HumanoidRootPart: BasePart)
 end
 
 local SavedPosition = Vector3.new()
+local Remote = GetRemote()
 
 function SellBlocks(HumanoidRootPart: BasePart)
 	local HRPPos = HumanoidRootPart.Position
@@ -115,7 +114,6 @@ function SellBlocks(HumanoidRootPart: BasePart)
 	
 	HumanoidRootPart.CFrame = CFrame.new(SavedPosition)
 end
-
 
 
 
