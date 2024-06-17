@@ -158,7 +158,7 @@ function MiningLoop()
 
 		for _, CurrentBlock in pairs(parts) do
 			Remote:FireServer("MineBlock",{{CurrentBlock.Parent}})
-			RunService.RenderStepped:Wait()
+			task.wait(0.1)
 		end
 
 		if GetCurrentCapacity() > CapacityThreshold then SellBlocks(HumanoidRootPart) end
