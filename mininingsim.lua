@@ -100,6 +100,7 @@ end
 
 local SavedPosition = Vector3.new()
 local Remote = GetRemote()
+local SellPad = workspace.Activation:GetChildren()[62]
 
 function SellBlocks(HumanoidRootPart: BasePart)
 	print("Function to sell blocks has been called")
@@ -112,10 +113,12 @@ function SellBlocks(HumanoidRootPart: BasePart)
 		SavedPosition = HRPPos
 	end
 	
-	while not
-		((HumanoidRootPart.Position.Z >= 26360 and HumanoidRootPart.Position.Z <= 26370) and 
-		(HumanoidRootPart.Position.X >= 52 and HumanoidRootPart.Position.X <= 62)) do
-		HumanoidRootPart.CFrame = CFrame.new(Vector3.new(57.55067443847656, 14.810218811035156, 26365.021484375))
+	while (
+		(HumanoidRootPart.Position.Z >= 26360 and HumanoidRootPart.Position.Z <= 26370) and
+			(HumanoidRootPart.Position.X >= 52 and HumanoidRootPart.Position.X <= 62)
+		) == false 
+	do
+		HumanoidRootPart.CFrame = SellPad.CFrame
 	end
 	
 	Remote:FireServer("SellItems", {{}})
@@ -164,7 +167,7 @@ function MiningLoop()
 		local parts = workspace:FindPartsInRegion3WithWhiteList(region, {game.Workspace.Blocks}, 5)
 
 		for _, CurrentBlock in pairs(parts) do
-			Remote:FireServer("MineBlock",{{CurrentBlock.Parent}})
+			Remote:FireServer("MineBlock", {{CurrentBlock.Parent}})
 			RunService.RenderStepped:Wait()
 		end
 
@@ -181,4 +184,4 @@ MiningLoop(); LocalPlayer.CharacterAdded:Connect(MiningLoop)
 4.922764778137207, 12.383817672729492, 26178.345703125 - left upper
 60.422000885009766, 12.383818626403809, 26178.615234375 - right upper
 59.43182373046875, 12.383817672729492, 26232.974609375 - left bottom
-]]
+]]--
