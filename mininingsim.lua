@@ -113,9 +113,10 @@ function SellBlocks(HumanoidRootPart: BasePart)
 		SavedPosition = HRPPos
 	end
 	
-	for count = 1, 10, 1 do HumanoidRootPart.CFrame = SellPad.CFrame end
-	
-	Remote:FireServer("SellItems", {{}})
+	while GetCurrentCapacity() >= CapacityThreshold and RunService.RenderStepped:Wait() do
+		HumanoidRootPart.CFrame = SellPad.CFrame
+		Remote:FireServer("SellItems", {{}})
+	end
 	
 	HumanoidRootPart.CFrame = CFrame.new(SavedPosition)
 end
@@ -165,7 +166,7 @@ function MiningLoop()
 			RunService.RenderStepped:Wait()
 		end
 
-		if GetCurrentCapacity() > CapacityThreshold and GetCurrentDepth() > DepthThreshold then
+		if GetCurrentCapacity() >= CapacityThreshold and GetCurrentDepth() >= DepthThreshold then
 			SellBlocks(HumanoidRootPart)
 		end
 	end
