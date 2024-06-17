@@ -192,8 +192,8 @@ function MiningLoop()
 	end
 end
 
-MiningLoop(); LocalPlayer.CharacterAdded:Connect(MiningLoop)
 RunService:BindToRenderStep("RebirthCheck", 101, CheckRebirth)
+MiningLoop(); LocalPlayer.CharacterAdded:Connect(MiningLoop)
 
 --[[
 4.9974188804626465, 12.383817672729492, 26232.9296875 - left bottom
