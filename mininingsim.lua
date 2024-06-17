@@ -37,7 +37,7 @@ local Humanoid = Character:WaitForChild("Humanoid")
 _G.Autofarm = false
 
 
-local DepthThreshold = 100
+local DepthThreshold = 1
 local CapacityThreshold = 500
 
 
@@ -161,7 +161,7 @@ function MiningLoop()
 			RunService.RenderStepped:Wait()
 		end
 
-		if GetCurrentCapacity() > CapacityThreshold then SellBlocks() end
+		if GetCurrentCapacity() > CapacityThreshold then SellBlocks(HumanoidRootPart) end
 	end
 end
 
