@@ -124,7 +124,7 @@ function SellBlocks(HumanoidRootPart: BasePart)
 end
 
 
-
+--[[
 if LoadingFrame.Visible == true then
 	while Quality.Visible == false do RunService.RenderStepped:Wait() end
 end
@@ -134,7 +134,7 @@ for _, Connection in pairs(getconnections(LowQuality.MouseButton1Down)) do
 end
 
 local PlayerStatsGUI = {Coins.Amount.Text, Inventory.Amount.Text, Tokens.Amount.Text}
-while table.find(PlayerStatsGUI, "Loading...") do RunService.RenderStepped:Wait() end
+while table.find(PlayerStatsGUI, "Loading...") do RunService.RenderStepped:Wait() end]]--
 
 function MiningLoop()
 	local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
