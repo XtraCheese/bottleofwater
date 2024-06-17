@@ -102,6 +102,8 @@ local SavedPosition = Vector3.new()
 local Remote = GetRemote()
 
 function SellBlocks(HumanoidRootPart: BasePart)
+	print("Function to sell blocks has been called")
+	
 	local HRPPos = HumanoidRootPart.Position
 	
 	if 
@@ -123,16 +125,16 @@ end
 
 
 
-
-while Quality.Visible == false do RunService.RenderStepped:Wait() end
+if LoadingFrame.Visible == true then
+	while Quality.Visible == false do RunService.RenderStepped:Wait() end
+end
 
 for _, Connection in pairs(getconnections(LowQuality.MouseButton1Down)) do
 	Connection:Fire()
 end
 
-while table.find({Coins.Amount.Text, Inventory.Amount.Text, Tokens.Amount.Text}, "Loading...") do
-	RunService.RenderStepped:Wait()
-end
+local PlayerStatsGUI = {Coins.Amount.Text, Inventory.Amount.Text, Tokens.Amount.Text}
+while table.find(PlayerStatsGUI, "Loading...") do RunService.RenderStepped:Wait() end
 
 function MiningLoop()
 	local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
