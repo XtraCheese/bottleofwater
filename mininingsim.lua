@@ -103,7 +103,7 @@ end
 function MoveToMine(HumanoidRootPart: BasePart)
 	local Tween = TweenService:Create(
 		HumanoidRootPart,
-		TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.In, 0, false),
+		TweenInfo.new(3, Enum.EasingStyle.Linear, Enum.EasingDirection.In, 0, false),
 		{CFrame = CFrame.new(Vector3.new(29.979537963867188, 10.882247924804688, 26207.3203125))}
 	)
 	
@@ -160,7 +160,6 @@ function MiningLoop()
 	local Humanoid = Character:WaitForChild("Humanoid")
 
 	if not Platform then 
-		RunService:UnbindFromRenderStep("Platform")
 		Platform = GetPlatform() 
 		RunService:BindToRenderStep("Platform", 301, function() TpPlatform(HumanoidRootPart) end)
 	end
