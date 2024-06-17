@@ -62,8 +62,7 @@ function GetPlatform()
 end
 
 function GetCurrentDepth()
-	local DepthString = string.gsub(Depth.Text, ",", "")
-	local DepthNumber = tonumber(DepthString)
+	local DepthNumber = tonumber(Depth.Text)
 	
 	return DepthNumber
 end
@@ -77,7 +76,7 @@ function GetCurrentCapacity()
 end
 
 function GetCoins()
-	local CoinsString = string.gsub(Coins.Text, ",", "")
+	local CoinsString = string.gsub(Coins.Amount.Text, ",", "")
 	local CoinsNumber = tonumber(CoinsString)
 
 	return CoinsNumber
