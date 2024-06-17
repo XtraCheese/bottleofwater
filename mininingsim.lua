@@ -130,7 +130,7 @@ function SellBlocks(HumanoidRootPart: BasePart)
 	
 	if GetCoins() >= (Rebirths.Value + 1) * 10000000 then
 		Remote:FireServer("Rebirth", {{}})
-		print("CanRebirth")
+		task.wait(0.05)
 	end
 	
 	Platform.CanCollide = false
