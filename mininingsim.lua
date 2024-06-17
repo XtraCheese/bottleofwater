@@ -110,7 +110,12 @@ function SellBlocks(HumanoidRootPart: BasePart)
 		SavedPosition = HRPPos
 	end
 	
-	HumanoidRootPart.CFrame = CFrame.new(Vector3.new(57.55067443847656, 14.810218811035156, 26365.021484375))
+	while 
+		(HumanoidRootPart.Position.Z >= 26360 and HumanoidRootPart.Position.Z <= 26370) and 
+		(HumanoidRootPart.Position.X >= 52 and HumanoidRootPart.Position.X <= 62) do
+		HumanoidRootPart.CFrame = CFrame.new(Vector3.new(57.55067443847656, 14.810218811035156, 26365.021484375))
+	end
+	
 	Remote:FireServer("SellItems", {{}})
 	
 	HumanoidRootPart.CFrame = CFrame.new(SavedPosition)
@@ -158,7 +163,7 @@ function MiningLoop()
 
 		for _, CurrentBlock in pairs(parts) do
 			Remote:FireServer("MineBlock",{{CurrentBlock.Parent}})
-			task.wait(0.1)
+			RunService.RenderStepped:Wait()
 		end
 
 		if GetCurrentCapacity() > CapacityThreshold then SellBlocks(HumanoidRootPart) end
